@@ -14,7 +14,8 @@ class CustomLoginController extends Controller
      */
     public function create()
     {
-        return view('auth.custom-login');
+        $isAdminLogin = request()->is('admin/login');
+        return view('auth.custom-login', compact('isAdminLogin'));
     }
 
     /**

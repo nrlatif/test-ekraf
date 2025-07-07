@@ -4,7 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Login - EKRAF KUNINGAN</title>
+    <title>
+        @if(isset($isAdminLogin) && $isAdminLogin)
+            Login Admin - EKRAF KUNINGAN
+        @else
+            Login - EKRAF KUNINGAN
+        @endif
+    </title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -32,7 +38,16 @@
                     <div class="w-16 h-16 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center">
                         <i class="fas fa-lock text-white text-2xl"></i>
                     </div>
-                    <h2 class="text-xl font-bold text-white">Selamat Datang</h2>
+                    <h2 class="text-xl font-bold text-white">
+                        @if(isset($isAdminLogin) && $isAdminLogin)
+                            Login Admin
+                        @else
+                            Selamat Datang
+                        @endif
+                    </h2>
+                    @if(isset($isAdminLogin) && $isAdminLogin)
+                        <p class="text-white/80 text-sm mt-1">Silakan masuk ke dashboard admin</p>
+                    @endif
                 </div>
 
                 <!-- Form Content -->
@@ -53,7 +68,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('login') }}" class="space-y-6">
+                    <form method="POST" action="{{ request()->is('admin/login') ? '/admin/login' : route('login') }}" class="space-y-6">
                         @csrf
 
                         <!-- Email Address -->

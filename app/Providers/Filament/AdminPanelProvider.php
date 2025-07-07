@@ -31,7 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->login(Login::class) // Gunakan custom login page dengan validasi admin
+            ->login(false) // Nonaktifkan login Filament, gunakan custom
             // ->registration() // Nonaktifkan registrasi publik untuk keamanan
             ->colors([
                 'primary' => Color::Amber,

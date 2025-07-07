@@ -27,12 +27,16 @@ Route::get('/artikels/{slug}', [ArtikelController::class,'show'])->name('artikel
 
 Route::get('/author/{username}',[AuthorController::class, 'show'])->name('author.show');
 
-// Redirect login route ke admin login
-Route::get('/login', function () {
-    return redirect('/admin/login');
-})->name('login');
+// Custom Login Routes
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [CustomLoginController::class, 'create'])->name('login');
+    Route::post('/login', [CustomLoginController::class, 'store']);
+    // Admin login juga menggunakan custom login
+    Route::get('/admin/login', [CustomLoginController::class, 'create']);
+    Route::post('/admin/login', [CustomLoginController::class, 'store']);
+});
 
-// Custom Logout Route untuk halaman publik (jika diperlukan)
+// Custom Logout Route
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [CustomLoginController::class, 'destroy'])->name('logout');
 });
