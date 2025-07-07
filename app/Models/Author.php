@@ -51,12 +51,12 @@ class Author extends Model
         if (!empty($this->avatar)) {
             $localPath = public_path('storage/' . $this->avatar);
             if (file_exists($localPath)) {
-                return asset('storage/' . $this->avatar);
+                return secure_asset('storage/' . $this->avatar);
             }
         }
 
         // 4. Final fallback to default avatar
-        return asset('assets/img/default-avatar.svg');
+        return secure_asset('assets/img/default-avatar.svg');
     }
 
     /**

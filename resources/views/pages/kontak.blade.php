@@ -4,7 +4,7 @@
 @section('content')
     <!-- Banner -->
     <div class="relative h-44 md:h-15 bg-center bg-cover flex items-center"
-        style="background-image: url('{{ asset('assets/img/BGKontak.png') }}');">
+        style="background-image: url('{{ secure_asset('assets/img/BGKontak.png') }}');">
         <div class="bg-black bg-opacity-50 w-full h-full absolute top-0 left-0"></div>
         <div class="relative z-10 text-white text-left px-6 md:px-12">
             <p class="mt-2 text-base md:text-lg">

@@ -20,7 +20,7 @@
             <!-- Logo & Header -->
             <div class="text-center mb-8">
                 <div class="bg-white rounded-full w-24 h-24 mx-auto mb-6 flex items-center justify-center shadow-lg border-4 border-white/50">
-                    <img src="{{ asset('assets/img/LogoEkraf.png') }}" alt="EKRAF Logo" class="w-16 h-16 object-contain">
+                    <img src="{{ secure_asset('assets/img/LogoEkraf.png') }}" alt="EKRAF Logo" class="w-16 h-16 object-contain">
                 </div>
                 <h1 class="text-3xl font-bold text-white mb-2 drop-shadow-lg">EKRAF KUNINGAN</h1>
             </div>

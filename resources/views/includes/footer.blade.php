@@ -1,6 +1,6 @@
 <!-- Section CTA dengan background image + overlay -->
 <section class="relative bg-center bg-cover"
-    style="background-image: url('{{ asset('assets/img/BackgroundFooter.png') }}')">
+    style="background-image: url('{{ secure_asset('assets/img/BackgroundFooter.png') }}')">
     <div class="max-w-4xl mx-auto text-center py-20 text-white px-4">
         <h2 class="text-3xl md:text-4xl font-bold mb-4">Bergabunglah dengan Galeri EKRAF Kuningan</h2>
         <p class="mb-6 text-sm md:text-base">Daftarkan usaha kreatif Anda dan dapatkan berbagai manfaat untuk
@@ -31,7 +31,7 @@
 <footer class="bg-[#1E293B] text-white">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-6 py-12">
         <div class="space-y-4">
-            <img src="{{ asset('assets/img/LogoEkrafPutih.png') }}" alt="Logo" class="h-12">
+            <img src="{{ secure_asset('assets/img/LogoEkrafPutih.png') }}" alt="Logo" class="h-12">
             <p class="text-sm text-gray-400">
                 Mendorong pertumbuhan ekonomi kreatif Kuningan melalui inovasi dan pelestarian budaya lokal.
             </p>

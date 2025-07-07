@@ -85,11 +85,11 @@ class Katalog extends Model
 
         // 4. FALLBACK: Local storage if image exists (legacy)
         if (!empty($this->image) && file_exists(public_path('storage/' . $this->image))) {
-            return asset('storage/' . $this->image);
+            return secure_asset('storage/' . $this->image);
         }
 
         // 5. Final fallback to placeholder
-        return asset('assets/img/placeholder-catalog.svg');
+        return secure_asset('assets/img/placeholder-catalog.svg');
     }
 
     /**

@@ -77,11 +77,11 @@ class Artikel extends Model
 
         // 3. FALLBACK: Local storage if thumbnail exists (legacy)
         if (!empty($this->thumbnail) && file_exists(public_path('storage/' . $this->thumbnail))) {
-            return asset('storage/' . $this->thumbnail);
+            return secure_asset('storage/' . $this->thumbnail);
         }
 
         // 4. Final fallback to placeholder
-        return asset('assets/img/placeholder-article.svg');
+        return secure_asset('assets/img/placeholder-article.svg');
     }
 
     /**

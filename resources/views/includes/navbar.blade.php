@@ -6,7 +6,7 @@
                 <!-- Logo Section -->
                 <div class="flex items-center space-x-4">
                     <a href="{{ url('/') }}" class="flex items-center space-x-3">
-                        <img src="{{ asset('assets/img/LogoEkraf.png') }}" alt="EKRAF Logo"
+                        <img src="{{ secure_asset('assets/img/LogoEkraf.png') }}" alt="EKRAF Logo"
                             class="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 transition-transform duration-300 hover:scale-105">
                     </a>
                 </div>

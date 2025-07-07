@@ -2,7 +2,7 @@
 @section('title', 'ARTIKEL - EKRAF KUNINGAN')
 @section('content')
     <div class="relative h-44 md:h-15 bg-center bg-cover flex items-center"
-        style="background-image: url('{{ asset('assets/img/BGKontak.png') }}');">
+        style="background-image: url('{{ secure_asset('assets/img/BGKontak.png') }}');">
         <div class="bg-black bg-opacity-50 w-full h-full absolute top-0 left-0"></div>
         <div class="relative z-10 text-white text-left px-6 md:px-12">
             <p class="mt-2 text-base md:text-lg">
@@ -22,7 +22,7 @@
                     <div class="relative h-64 md:h-80 lg:h-96 rounded-xl overflow-hidden">
                         <!-- Background Image with better positioning -->
                         <div class="absolute inset-0 bg-center bg-cover bg-no-repeat"
-                             style="background-image: url('{{ $banner->image_url ?? ($banner->artikel ? $banner->artikel->thumbnail_url : asset('assets/img/BGKontak.png')) }}');">
+                             style="background-image: url('{{ $banner->image_url ?? ($banner->artikel ? $banner->artikel->thumbnail_url : secure_asset('assets/img/BGKontak.png')) }}');">
                         </div>
                         
                         <!-- Enhanced Gradient Overlay -->
@@ -503,7 +503,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
                 img.onerror = function() {
                     // Fallback to default image
-                    bgElement.style.backgroundImage = `url('{{ asset('assets/img/BGKontak.png') }}')`;
+                    bgElement.style.backgroundImage = `url('{{ secure_asset('assets/img/BGKontak.png') }}')`;
                     bgElement.style.opacity = '1';
                 };
                 bgElement.style.opacity = '0';

@@ -82,7 +82,7 @@
                                          alt="{{ $artikel->title }}"
                                          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                                          onload="this.style.opacity='1'; this.nextElementSibling.style.display='none';"
-                                         onerror="this.onerror=null; this.src='{{ asset('assets/img/placeholder-article.jpg') }}'; this.style.opacity='1'; this.nextElementSibling.style.display='none';"
+                                         onerror="this.onerror=null; this.src='{{ secure_asset('assets/img/placeholder-article.jpg') }}'; this.style.opacity='1'; this.nextElementSibling.style.display='none';"
                                          style="opacity:0;">
                                     <!-- Loading placeholder -->
                                     <div class="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">

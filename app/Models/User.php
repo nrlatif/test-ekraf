@@ -145,11 +145,11 @@ class User extends Authenticatable
 
         // 3. FALLBACK: Local storage if image exists (legacy)
         if (!empty($this->image) && file_exists(public_path('storage/' . $this->image))) {
-            return asset('storage/' . $this->image);
+            return secure_asset('storage/' . $this->image);
         }
 
         // 4. Final fallback to default avatar
-        return asset('assets/img/default-avatar.svg');
+        return secure_asset('assets/img/default-avatar.svg');
     }
 
     /**
