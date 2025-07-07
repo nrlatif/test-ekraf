@@ -18,13 +18,13 @@ class EnsureUserHasAdminAccess
     {
         // Check if user is authenticated
         if (!Auth::check()) {
-            return redirect()->route('login');
+            return redirect('/admin/login');
         }
 
         // Check if user has admin access (level 1 or 2)
         if (!in_array(Auth::user()->level_id, [1, 2])) {
             Auth::logout();
-            return redirect()->route('login')->withErrors(['email' => 'Akun Anda tidak terdaftar.']);
+            return redirect('/admin/login')->withErrors(['email' => 'Akun Anda tidak terdaftar.']);
         }
 
         return $next($request);

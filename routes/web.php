@@ -27,13 +27,12 @@ Route::get('/artikels/{slug}', [ArtikelController::class,'show'])->name('artikel
 
 Route::get('/author/{username}',[AuthorController::class, 'show'])->name('author.show');
 
-// Custom Login Routes
-Route::middleware('guest')->group(function () {
-    Route::get('/login', [CustomLoginController::class, 'create'])->name('login');
-    Route::post('/login', [CustomLoginController::class, 'store']);
-});
+// Redirect login route ke admin login
+Route::get('/login', function () {
+    return redirect('/admin/login');
+})->name('login');
 
-// Custom Logout Route
+// Custom Logout Route untuk halaman publik (jika diperlukan)
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [CustomLoginController::class, 'destroy'])->name('logout');
 });
@@ -55,5 +54,26 @@ Route::get('/storage/{path}', function ($path) {
     
     return $response;
 })->where('path', '.*');
+
+// Test route untuk debug admin access
+Route::get('/test-admin', function () {
+    if (auth()->check()) {
+        $user = auth()->user();
+        return response()->json([
+            'authenticated' => true,
+            'user_id' => $user->id,
+            'user_email' => $user->email,
+            'user_level' => $user->level_id,
+            'is_admin' => in_array($user->level_id, [1, 2]),
+            'can_access_admin' => in_array($user->level_id, [1, 2]) ? 'Yes' : 'No'
+        ]);
+    }
+    
+    return response()->json([
+        'authenticated' => false,
+        'message' => 'User not authenticated'
+    ]);
+})->middleware('web');
+
 // Include authentication routes (excluding login routes that we override)
 require __DIR__.'/auth.php';

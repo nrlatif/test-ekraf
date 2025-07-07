@@ -10,7 +10,6 @@ use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
-use Filament\Http\Responses\Auth\Contracts\LoginResponse;
 
 class Login extends BaseLogin
 {
@@ -65,17 +64,29 @@ class Login extends BaseLogin
         return 'Masuk ke Dashboard';
     }
 
-    public function authenticate(): ?LoginResponse
+    protected function getCredentialsFromFormData(array $data): array
     {
-        $data = $this->form->getState();
-
-        if (! Auth::attempt([
+        return [
             'email' => $data['email'],
             'password' => $data['password'],
-        ], $data['remember'] ?? false)) {
-            throw ValidationException::withMessages([
-                'data.email' => 'Email atau password yang Anda masukkan salah.',
-            ]);
+        ];
+    }
+
+    protected function throwFailureValidationException(): never
+    {
+        throw ValidationException::withMessages([
+            'data.email' => 'Email atau password yang Anda masukkan salah.',
+        ]);
+    }
+
+    public function authenticate(): mixed
+    {
+        $data = $this->form->getState();
+        
+        $credentials = $this->getCredentialsFromFormData($data);
+
+        if (! Auth::attempt($credentials, $data['remember'] ?? false)) {
+            $this->throwFailureValidationException();
         }
 
         // Check if user has admin access (level 1 or 2)
@@ -86,6 +97,8 @@ class Login extends BaseLogin
             ]);
         }
 
-        return app(LoginResponse::class);
+        session()->regenerate();
+
+        return redirect()->intended('/admin');
     }
 }
