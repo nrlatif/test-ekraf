@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Http\Request;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\URL;
 use App\Models\Author;
 use App\Models\Artikel;
 use App\Models\Product;
@@ -30,6 +31,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Force HTTPS in production or when FORCE_HTTPS is true
+        if (config('app.env') === 'production' || config('app.force_https', false)) {
+            URL::forceScheme('https');
+        }
+
         // Register model observers for automatic sync to Next.js API
         Author::observe(AuthorObserver::class);
         Artikel::observe(ArtikelObserver::class);

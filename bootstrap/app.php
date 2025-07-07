@@ -12,6 +12,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // Trust proxies for HTTPS detection
+        $middleware->trustProxies(at: '*');
+        
         // Register API security middleware
         $middleware->alias([
             'api.security.headers' => \App\Http\Middleware\ApiSecurityHeaders::class,

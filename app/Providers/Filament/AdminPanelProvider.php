@@ -32,6 +32,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login(false) // Nonaktifkan login Filament, gunakan custom
+            ->logoutUrl('/logout') // Gunakan route logout custom
             // ->registration() // Nonaktifkan registrasi publik untuk keamanan
             ->colors([
                 'primary' => Color::Amber,

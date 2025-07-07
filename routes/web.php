@@ -12,6 +12,9 @@ use App\Http\Controllers\Auth\CustomLoginController;
 use Illuminate\Support\Str;
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
+Route::get('/test-https', function() {
+    return view('test-https');
+})->name('test-https');
 Route::get('/search', function() {
     return view('pages.search');
 })->name('search');
