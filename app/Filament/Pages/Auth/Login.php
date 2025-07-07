@@ -7,6 +7,10 @@ use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Form;
 use Filament\Pages\Auth\Login as BaseLogin;
 use Filament\Actions\Action;
+use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+use Filament\Http\Responses\Auth\Contracts\LoginResponse;
 
 class Login extends BaseLogin
 {
@@ -59,5 +63,29 @@ class Login extends BaseLogin
     public function getHeading(): string
     {
         return 'Masuk ke Dashboard';
+    }
+
+    public function authenticate(): ?LoginResponse
+    {
+        $data = $this->form->getState();
+
+        if (! Auth::attempt([
+            'email' => $data['email'],
+            'password' => $data['password'],
+        ], $data['remember'] ?? false)) {
+            throw ValidationException::withMessages([
+                'data.email' => 'Email atau password yang Anda masukkan salah.',
+            ]);
+        }
+
+        // Check if user has admin access (level 1 or 2)
+        if (! in_array(Auth::user()->level_id, [1, 2])) {
+            Auth::logout();
+            throw ValidationException::withMessages([
+                'data.email' => 'Akun Anda tidak terdaftar sebagai admin.',
+            ]);
+        }
+
+        return app(LoginResponse::class);
     }
 }

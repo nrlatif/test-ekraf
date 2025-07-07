@@ -32,7 +32,7 @@ class CustomLoginController extends Controller
 
             // Check if user has admin access (level 1 or 2)
             if (in_array(Auth::user()->level_id, [1, 2])) {
-                return redirect()->intended(route('filament.admin.pages.dashboard'));
+                return redirect()->intended('/admin');
             } else {
                 // If user doesn't have admin access, logout and redirect back
                 Auth::logout();
