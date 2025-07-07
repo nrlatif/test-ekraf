@@ -59,6 +59,29 @@ Route::get('/storage/{path}', function ($path) {
     return $response;
 })->where('path', '.*');
 
+// Route untuk menangani Livewire assets
+Route::get('/livewire/livewire.min.js', function () {
+    $path = public_path('vendor/livewire/livewire.min.js');
+    if (file_exists($path)) {
+        return response()->file($path, [
+            'Content-Type' => 'application/javascript',
+            'Cache-Control' => 'public, max-age=31536000',
+        ]);
+    }
+    abort(404);
+});
+
+Route::get('/livewire/{file}', function ($file) {
+    $path = public_path('vendor/livewire/' . $file);
+    if (file_exists($path) && pathinfo($file, PATHINFO_EXTENSION) === 'js') {
+        return response()->file($path, [
+            'Content-Type' => 'application/javascript',
+            'Cache-Control' => 'public, max-age=31536000',
+        ]);
+    }
+    abort(404);
+})->where('file', '.*\.js$');
+
 // Test route untuk debug admin access
 Route::get('/test-admin', function () {
     if (auth()->check()) {
