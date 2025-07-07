@@ -3,7 +3,7 @@
 @section('content')
     <!-- Hero Section -->
     <div class="relative h-64 md:h-96 lg:h-[500px] bg-center bg-cover flex items-center"
-        style="background-image: url('{{ asset('assets/img/BGKontak.png') }}');">
+        style="background-image: url('{{  secure_asset('assets/img/BGKontak.png') }}');">
         <div class="bg-black bg-opacity-50 w-full h-full absolute top-0 left-0"></div>
         <div class="relative z-10 text-white text-center px-6 md:px-12 max-w-6xl mx-auto">
             <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">EKRAF KUNINGAN</h1>
@@ -46,7 +46,7 @@
             </p>
         </div>
         <div class="flex justify-center">
-            <img src="{{ asset('assets/img/Lobby.png') }}" alt="Lobby"
+            <img src="{{ secure_asset('assets/img/Lobby.png') }}" alt="Lobby"
                 class="rounded-lg shadow-md w-[300px] object-cover">
         </div>
     </section>
@@ -112,7 +112,7 @@
                                                 <div class="relative z-10 h-full flex flex-col justify-center">
                                                     <div class="w-16 h-16 mx-auto mb-3 bg-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg border-4 border-gray-100 overflow-hidden">
                                                         @if($sub->image)
-                                                            <img src="{{ asset('storage/' . $sub->image) }}" alt="{{ $sub->title }}" class="w-full h-full object-cover" />
+                                                            <img src="{{ secure_asset('storage/' . $sub->image) }}" alt="{{ $sub->title }}" class="w-full h-full object-cover" />
                                                         @else
                                                             @php
                                                                 $iconName = 'default';
@@ -141,7 +141,7 @@
                                                                     $iconName = 'kreatif';
                                                                 }
                                                             @endphp
-                                                            <img src="{{ asset('assets/img/icons/subsektor-' . $iconName . '.svg') }}" alt="{{ $sub->title }}" class="w-12 h-12 object-contain" />
+                                                            <img src="{{ secure_asset('assets/img/icons/subsektor-' . $iconName . '.svg') }}" alt="{{ $sub->title }}" class="w-12 h-12 object-contain" />
                                                         @endif
                                                     </div>
                                                     <h3 class="text-sm font-bold text-gray-800 group-hover:text-orange-600 transition-colors duration-300 line-clamp-2 mb-1 leading-tight">{{ $sub->title }}</h3>
@@ -192,7 +192,7 @@
                                                 <div class="relative z-10 h-full flex flex-col justify-center">
                                                     <div class="w-16 h-16 mx-auto mb-3 bg-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg border-4 border-gray-100 overflow-hidden">
                                                         @if($sub->image)
-                                                            <img src="{{ asset('storage/' . $sub->image) }}" alt="{{ $sub->title }}" class="w-full h-full object-cover" />
+                                                            <img src="{{ secure_asset('storage/' . $sub->image) }}" alt="{{ $sub->title }}" class="w-full h-full object-cover" />
                                                         @else
                                                             @php
                                                                 $iconName = 'default';
@@ -221,7 +221,7 @@
                                                                     $iconName = 'kreatif';
                                                                 }
                                                             @endphp
-                                                            <img src="{{ asset('assets/img/icons/subsektor-' . $iconName . '.svg') }}" alt="{{ $sub->title }}" class="w-12 h-12 object-contain" />
+                                                            <img src="{{ secure_asset('assets/img/icons/subsektor-' . $iconName . '.svg') }}" alt="{{ $sub->title }}" class="w-12 h-12 object-contain" />
                                                         @endif
                                                     </div>
                                                     <h3 class="text-sm font-bold text-gray-800 group-hover:text-orange-600 transition-colors duration-300 line-clamp-2 mb-1 leading-tight">{{ $sub->title }}</h3>
@@ -382,7 +382,7 @@
                                      alt="{{ $kat->title }}"
                                      class="w-full h-full object-cover transition-all duration-300 group-hover:scale-110"
                                      onload="this.style.opacity='1'; this.nextElementSibling.style.display='none';"
-                                     onerror="this.onerror=null; this.src='{{ asset('assets/img/placeholder-catalog.jpg') }}'; this.style.opacity='1'; this.nextElementSibling.style.display='none';"
+                                     onerror="this.onerror=null; this.src='{{secure_asset('assets/img/placeholder-catalog.jpg') }}'; this.style.opacity='1'; this.nextElementSibling.style.display='none';"
                                      style="opacity:0;">
                                 <!-- Loading placeholder -->
                                 <div class="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
@@ -410,7 +410,7 @@
                                 <div class="catalog-card-footer flex items-center justify-between">
                                     <span class="inline-flex items-center bg-orange-50 text-orange-600 text-xs px-3 py-1.5 rounded-full font-medium border border-orange-200">
                                         @if($kat->subSektor && $kat->subSektor->image)
-                                            <img src="{{ asset('storage/' . $kat->subSektor->image) }}" alt="{{ $kat->subSektor->title }}" class="w-4 h-4 mr-1.5 object-contain" />
+                                            <img src="{{ secure_asset('storage/' . $kat->subSektor->image) }}" alt="{{ $kat->subSektor->title }}" class="w-4 h-4 mr-1.5 object-contain" />
                                         @else
                                             @php
                                                 $iconName = 'default';
@@ -441,7 +441,7 @@
                                                     }
                                                 }
                                             @endphp
-                                            <img src="{{ asset('assets/img/icons/subsektor-' . $iconName . '.svg') }}" alt="icon" class="w-4 h-4 mr-1.5 object-contain" />
+                                            <img src="{{ secure_asset('assets/img/icons/subsektor-' . $iconName . '.svg') }}" alt="icon" class="w-4 h-4 mr-1.5 object-contain" />
                                         @endif
                                         {{ $kat->subSektor->title ?? 'Sub Sektor' }}
                                     </span>
