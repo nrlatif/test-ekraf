@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" fill="#f9fafb"/>
+  <rect x="175" y="125" width="50" height="50" rx="4" fill="#e5e7eb"/>
+  <path d="M190 140L200 155L210 140" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <circle cx="195" cy="145" r="3" fill="#9ca3af"/>
+  <text x="200" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#6b7280">Catalog Image</text>
+</svg>

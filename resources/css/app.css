@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom line-clamp utilities for consistent card layouts */
+@layer utilities {
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+}
+
+/* Catalog card consistency improvements */
+@layer components {
+  .catalog-card {
+    @apply bg-white rounded-xl overflow-hidden shadow hover:shadow-lg transition-all duration-300 transform hover:scale-105 h-full flex flex-col;
+  }
+  
+  .catalog-card-image {
+    @apply relative h-48 bg-gray-100 overflow-hidden;
+  }
+  
+  .catalog-card-content {
+    @apply p-4 flex flex-col flex-grow;
+  }
+  
+  .catalog-card-title {
+    @apply text-base font-bold text-orange-600 mb-2 line-clamp-2 min-h-[3rem] leading-6;
+  }
+  
+  .catalog-card-description {
+    @apply text-xs text-gray-600 mb-3 line-clamp-3 flex-grow leading-4;
+  }
+  
+  .catalog-card-footer {
+    @apply flex items-center justify-between mt-auto;
+  }
+}
