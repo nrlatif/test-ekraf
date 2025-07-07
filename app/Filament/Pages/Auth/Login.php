@@ -10,6 +10,7 @@ use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Filament\Http\Responses\Auth\Contracts\LoginResponse;
 
 class Login extends BaseLogin
 {
@@ -79,7 +80,7 @@ class Login extends BaseLogin
         ]);
     }
 
-    public function authenticate(): mixed
+    public function authenticate(): ?LoginResponse
     {
         $data = $this->form->getState();
         
@@ -99,6 +100,6 @@ class Login extends BaseLogin
 
         session()->regenerate();
 
-        return redirect()->intended('/admin');
+        return app(LoginResponse::class);
     }
 }
